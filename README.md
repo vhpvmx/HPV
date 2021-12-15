@@ -1,4 +1,4 @@
-# HPV
+# Hierarchical Pathfinding Algorithm
 Path planning for autonomous driving in real scenarios, large-scale crowds or video games is a challenge to solve, due to the inherent dynamism in the scenes and vast search space, it is often necessary to reprocess the path or make an additional process to return to the original one after avoiding a collision, making the process computationally expensive. In this sense, the use of a hierarchical approach offers different advantages: 
 
 - it divides the search space reducing the problem complexity
