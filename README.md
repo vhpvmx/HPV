@@ -1,2 +1,10 @@
 # HPV
-Hierarchical Pathfinding Algorithm
+Path planning for autonomous driving in real scenarios, large-scale crowds or video games is a challenge to solve, due to the inherent dynamism in the scenes and vast search space, it is often necessary to reprocess the path or make an additional process to return to the original one after avoiding a collision, making the process computationally expensive. In this sense, the use of a hierarchical approach offers different advantages: 
+
+- it divides the search space reducing the problem complexity
+- we can obtain a partial path faster which allows to a character start moving and compute the rest of the path asynchronously
+- we can reprocess only a part if necessary with different levels of abstraction.
+
+Typically the approach employed is to construct a graph from an occupancy matrix and then to traverse the graph using graph-algorithms such as A*, Dijkstra or Breadth-First Search. All of the incumbent methods are very mature. However, they consume relatively high amounts of memory, are slow due to the number of pointer manipulations and are not readily amenable to hardware acceleration for real-time operation. Even enhancements such as visibility graphs do nothing to change the fundamental nature of the graph algorithms and require significant levels of pre-processing which are not feasible to implement in real-time.
+
+This algorithm operates directly on the grid or bitmap rather than first converting it to a graph making the implementation very hardware friendly. It is domain-independent, and it could be adapted to dynamic scenes. The method makes use of a hierarchical representation which incrementally builds the equivalent of a visibility graph without pre-processing. The hierarchical approach reduces the search space, identifying the areas of interest in high levels of abstraction, allows the tree to be pruned as it is constructed using a heuristic based on density and distance. In this way, the algorithm gives priority to the shortest paths in areas with fewer obstacles.
